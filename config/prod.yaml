@@ -2,16 +2,16 @@
 client:
   port: 5001
   assetPrefix: '/'
-  apiUrl: 'http://0.0.0.0:5002/api'
-  collaborationUrl: 'ws://0.0.0.0:5003'
+  apiUrl: 'http://thinkapi.kubeservice.cn/api'
+  collaborationUrl: 'ws://thinkapi.kubeservice.cn/think/wss'
   # 以下为页面 meta 配置
   seoAppName: '云策文档'
   seoDescription: '云策文档是一款开源知识管理工具。通过独立的知识库空间，结构化地组织在线协作文档，实现知识的积累与沉淀，促进知识的复用与流通。'
-  seoKeywords: '云策文档,协作,文档,fork fantasticit,https://github.com/kubeservice-stack/think'
+  seoKeywords: '云策文档,协作,文档,fantasticit,https://github.com/fantasticit/think'
   # 预先连接的来源，空格分割（比如图片存储服务器）
   dnsPrefetch: '//wipi.oss-cn-shanghai.aliyuncs.com'
   # 站点地址（如：http://think.codingit.cn/），一定要设置，否则会出现 cookie、跨域等问题
-  siteUrl: 'http://0.0.0.0:5001'
+  siteUrl: 'http://think.kubeservice.cn'
   siteDomain: ''
 
 server:
@@ -19,10 +19,10 @@ server:
   port: 5002
   collaborationPort: 5003
   maxDocumentVersion: 20 # 最大版本记录数
-  logRetainDays: 1 # 日志保留天数，比如只保留近三天日志
+  logRetainDays: 3 # 日志保留天数，比如只保留近三天日志
   enableRateLimit: true # 是否限流
   rateLimitWindowMs: 60000 # 限流时间
-  rateLimitMax: 200 # 单位限流时间内单个 ip 最大访问数量
+  rateLimitMax: 1000 # 单位限流时间内单个 ip 最大访问数量
   email: # 邮箱服务，参考 http://help.163.com/09/1223/14/5R7P6CJ600753VB8.html?servCode=6010376 获取 SMTP 配置
     host: ''
     port: 465
@@ -36,7 +36,7 @@ server:
 # 数据库配置
 db:
   mysql:
-    host: '127.0.0.1'
+    host: 'mysql'
     username: 'think'
     password: 'think'
     database: 'think'
@@ -45,7 +45,7 @@ db:
     timezone: '+08:00'
     synchronize: true
   redis:
-    host: '127.0.0.1'
+    host: 'redis'
     port: '6379'
     password: 'root'
 
@@ -54,7 +54,7 @@ oss:
   local:
     enable: true
     # 线上更改为服务端地址（如：https://api.codingit.cn）
-    server: 'http://localhost:5002'
+    server: 'http://thinkapi.kubeservice.cn'
   # 以下为各厂商 sdk 配置，不要修改字段，填入值即可
   tencent:
     enable: false
